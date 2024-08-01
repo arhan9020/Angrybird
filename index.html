@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Do You Love Me?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f9f9f9;
+      margin: 0;
+      text-align: center;
+      transition: background-color 0.5s;
+    }
+    .container {
+      border: 2px solid #333;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background-color: #ddd;
+    }
+    button:active {
+      transform: scale(0.98);
+      animation: bounce 1s;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-30px);
+      }
+      60% {
+        transform: translateY(-15px);
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Do you love me, my angry bird?</h1>
+    <button onclick="showYesMessage()">Yes</button>
+    <button id="noButton" onclick="showNextMessage()">No</button>
+  </div>
+  <audio id="backgroundMusic" src="your-music-file.mp3" autoplay loop></audio>
+  <script>
+    let messages = [
+      "Are you sure? 😢",
+      "Please don't say no again! 💔",
+      "You can't escape! You love me! 😊"
+    ];
+    let messageIndex = 0;
+
+    function showYesMessage() {
+      alert("Yay! I love you too! 💖");
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+      document.body.style.backgroundColor = "#ffebee"; // Light pink background
+    }
+
+    function showNextMessage() {
+      if (messageIndex < messages.length) {
+        alert(messages[messageIndex]);
+        messageIndex++;
+      } else {
+        alert("You can't escape! You love me! 😊");
+        document.getElementById("noButton").style.display = "none";
+        document.body.style.backgroundColor = "#e0f7fa"; // Light blue background
+      }
+    }
+  </script>
+</body>
+</html>
